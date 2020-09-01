@@ -1,0 +1,5 @@
+<div class="color-cube" [ngClass]="{'active': active}">
+  <div class="wrapper">
+    <div *ngFor="let color of colors" [ngStyle]="{'background': '#'+color}"></div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<ion-row class="insta-images" *ngIf="slideImages?.length > 0">
+  <ion-col size="4" sizeMd="3" *ngFor="let index of [0, 1, 2]">
+    <ion-slides [pager]="false" [options]="slideOpts" class="effect">
+      <ion-slide  *ngFor="let image of slideImages[index]">
+        <img [src]="image">
+      </ion-slide>
+    </ion-slides>
+  </ion-col>
+  <ion-col size="3" class="ion-hide-sm-down">
+    <ion-slides [pager]="false" [options]="slideOpts" class="effect">
+      <ion-slide  *ngFor="let image of slideImages[3]">
+        <img [src]="image">
+      </ion-slide>
+    </ion-slides>
+  </ion-col>
+  <ion-col size="3" class="ion-hide-md-down" *ngFor="let index of [4, 5, 6, 7]">
+    <ion-slides [pager]="false" [options]="slideOpts" class="effect">
+      <ion-slide  *ngFor="let image of slideImages[index]">
+        <img [src]="image">
+      </ion-slide>
+    </ion-slides>
+  </ion-col>
+</ion-row>

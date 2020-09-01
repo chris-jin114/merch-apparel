@@ -1,0 +1,50 @@
+.gender-row {
+  label {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+
+  label span {
+    position: relative;
+    width: 100%;
+  }
+
+  label span:before,
+  label span:after {
+    content: '';
+  }
+
+  .col-1 {
+    left: 7px;
+  }
+
+  label span:before {
+    border: 1px solid #222021;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: top;
+    left: -40px;
+    position: absolute;
+    top: 0px;
+  }
+
+  label span:after {
+    background: #222021;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 4px;
+    left: -36px;
+    transition: 300ms;
+    opacity: 0;
+  }
+
+  label input:checked + span:after {
+    opacity: 1;
+  }
+}

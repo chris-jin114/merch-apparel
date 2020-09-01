@@ -1,0 +1,30 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 15px;
+}
+
+p {
+  margin: 5px 0;
+  color: gray;
+  font-size: 12px;
+
+  line-height: 16px;
+  letter-spacing: 1.35px;
+}
+
+b {
+  color: #000;
+}
+
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}

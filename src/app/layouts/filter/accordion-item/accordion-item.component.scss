@@ -1,0 +1,35 @@
+@import "../../../../theme/mixin.scss";
+div {
+  display: flex;
+  align-items: center;
+  color: $filterGray;
+  cursor: pointer;
+  .checkbox {
+    background: $white;
+    width: 10px;
+    height: 10px;
+    border: 1px solid $filterGray;
+    margin-right: 10px;
+    @include transition(all, 0.2s, linear);
+    &:hover,
+    &.active {
+      background: $filterBlack;
+      border: 1px solid $filterBlack;
+    }
+    @media screen and (max-width: 900px) {
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+    }
+  }
+  ion-label { 
+    font-size: 14px;
+    // word-break: break-all;
+    &.active {
+      color: $filterBlack;
+    }
+    @media screen and (max-width: 1200px) {
+      font-size: 12px;
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <div class="desktop-image-view" #imageView>
+      <img *ngIf="product else loading" [src]="previewStyle?.original_images[sideIndex]?.full_url" (load)="scrollToHorizontalCenter()">
+    </div>
+    <div class="mobile-image-view">
+      <div class="wrapper" *ngIf="product else loading" #imageContainer>
+        <img [src]="previewStyle?.original_images[sideIndex]?.full_url" #mobileImg (load)="imageLoaded()" width="100%" height="100%">
+      </div>
+      <div class="image-loader" *ngIf="imageLoading">
+        <ion-spinner name="lines"></ion-spinner>
+      </div>
+      <div class="top-panel" *ngIf="product">
+        <div class="thumb-slider">
+          <!-- <thumb-slider [product]="product" (hoverColorChange)="onColorChange($event)"></thumb-slider> -->
+          <ion-slides pager="false" [options]="slideOpts">
+            <ion-slide *ngFor="let style of product.product_style">
+              <color-cube class="color" (click)="selectStyle(style)" [active]="previewStyle.row_uuid == style.row_uuid" [colors]="style.color_hash"></color-cube>
+            </ion-slide>
+          </ion-slides>
+        </div>
+      </div>
+      <div class="bottom-panel" *ngIf="product">
+        <div class="sides">
+          <img [src]="previewStyle.small_images[0].full_url" [ngClass]="{'active': sideIndex == 0}" (click)="onClickSide(0)">
+          <img [src]="previewStyle.small_images[1].full_url" *ngIf="previewStyle.flag_has_back" [ngClass]="{'active': sideIndex == 1}" (click)="onClickSide(1)">
+        </div>
+        <div class="zoom-slider">
+          <ion-range [(ngModel)]="scale" min="0" max="100" (ionChange)="onSliderChange()"></ion-range>
+        </div>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="asyncLoading">
+    <ion-spinner name="lines" *ngIf="!errorType"></ion-spinner>
+    <span class="margin-left-10" *ngIf="!errorType">Loading...</span>
+    <span class="retry" *ngIf="errorType == 'server'" (click)="retryFailedRequest()">Unable to connect. Try freshing this page.</span>
+    <span class="retry" *ngIf="errorType == 'client'" (click)="retryFailedRequest()">{{errorMsg}}. Try freshing this page.</span>
+  </div>
+</ng-template>

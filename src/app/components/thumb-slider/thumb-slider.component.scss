@@ -1,0 +1,20 @@
+.colors-wheel { position: relative; display: flex; align-items: center; width: 60%; margin: 5px auto !important;
+    ion-slide { width: 60px; }
+    img { mix-blend-mode: multiply; width: 50px; object-fit: contain; opacity: 1;
+    }
+    .left-arrow { position: absolute; left: -50px; width: 30px;
+        &:hover { color: #2e9888; }
+        &.disable { color: lightgray; }
+        i { font-size: 2rem; }
+    }
+    .right-arrow { position: absolute; right: -50px; width: 30px;
+        &:hover { color: #2e9888; }
+        &.disable { color: lightgray; }
+        i { font-size: 2rem; float: right; }
+    }
+    .variants {
+        img { 
+            &:hover { transform: scale(1.2);}
+        }
+    }
+}

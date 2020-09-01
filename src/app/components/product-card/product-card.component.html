@@ -1,0 +1,31 @@
+<div class="product">
+  <div class="wrapper">
+    <div class="img" (click)="viewProductDetail(product)" [ngClass]="{'loading': imageLoading}">
+      <img [src]="product?.current_style?.image" class="front-img" (load)="imageLoaded()"/>
+      <div class="image-loader" *ngIf="imageLoading">
+        <ion-spinner name="lines"></ion-spinner>
+      </div>
+    </div>
+    <div class="product-info">
+      <div class="section">
+        <h5 class="name">{{ product.product_name }}</h5>
+      </div>
+      <div *ngIf="type == 'normal'" class="section">
+        <small>{{product.price.product_price | currency: 'USD':'symbol-narrow':'.2' }}</small>
+      </div>
+      <div class="section">
+        <small>{{product.product_description}}</small>
+      </div>
+      <div class="thumb-slider">
+        <thumb-slider *ngIf="type == 'normal'" [product]="product" (hoverColorChange)="onHoverColorChange($event)" [color]="color"></thumb-slider>
+      </div>
+      <div *ngIf="type == 'normal'" class="section">
+        <small *ngFor="let size of product.product_sizes" class="margin-right-10 margin-left-10 uppercase">{{ size }}</small>
+      </div>
+      <div *ngIf="type == 'normal'" class="section">
+        <small *ngIf="!hoverColor"> {{ product.product_style.length }} Colors </small>
+        <small *ngIf="hoverColor"> {{ product.current_style.color_name.toUpperCase() }}</small>
+      </div>
+    </div>
+  </div>
+</div>

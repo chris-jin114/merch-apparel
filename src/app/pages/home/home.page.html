@@ -1,0 +1,37 @@
+<div class="page-wrapper">
+  <div class="page-container">
+    <div *ngIf="bootstrap$ | async as bootstrap; else loading;">
+      
+      <div class="main-slider-wrapper" *ngIf="instaImages.length > 0">
+        <app-insta-images [images]="instaImages"></app-insta-images>
+      </div>
+
+      <div class="content-wrapper">
+        <ion-row *ngFor="let category of categories;let index = index;" class="category-view">
+          <ion-col size="12">
+            <div class="ion-float-left">
+              <h4 class="ion-no-margin ion-margin-start category-name"><b class="uppercase">{{ toTitleCase(category) }}</b></h4>
+            </div>
+            <div class="ion-float-right ion-margin-end">
+              <a [routerLink]="['/' + category]" class="see-more-link">See More</a>
+            </div>
+          </ion-col>
+          <ion-col *ngFor="let product of bootstrap[category];" sizeXs="12" sizeSm="6" sizeMd="4" class="product">
+            <product-card [product]="product" [categoryName]="category" [color]="index % 2 == 1 ? 'white': '#eeeeee'"></product-card>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+
+  <my-footer></my-footer>
+</div>
+
+<ng-template #loading>
+  <div class="asyncLoading">
+    <ion-spinner name="lines" *ngIf="!errorType"></ion-spinner>
+    <span class="margin-left-10" *ngIf="!errorType">Loading...</span>
+    <span class="retry" *ngIf="errorType == 'server'" (click)="retryFailedRequest()">Unable to connect. Try freshing this page.</span>
+    <span class="retry" *ngIf="errorType == 'client'" (click)="retryFailedRequest()">{{errorMsg}}. Try freshing this page.</span>
+  </div>
+</ng-template>

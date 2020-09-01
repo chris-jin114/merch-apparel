@@ -1,0 +1,17 @@
+<div class="page-container">
+  <div class="content-wrapper">
+    <ion-row *ngIf="getProducts$() | async as products; else loading">
+      <ion-col *ngFor="let product of products; let i  = index" sizeXs="12" sizeSm="6" sizeMd="4" sizeLg="4" sizeXl="3" class="product-wrapper">
+        <product-card [product]="product" [categoryName]="category.category_name"></product-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>
+<ng-template #loading>
+  <div class="asyncLoading">
+    <ion-spinner name="lines" *ngIf="!errorType"></ion-spinner>
+    <span class="margin-left-10" *ngIf="!errorType">Loading...</span>
+    <span class="retry" *ngIf="errorType == 'server'" (click)="retryFailedRequest()">Unable to connect. Try freshing this page.</span>
+    <span class="retry" *ngIf="errorType == 'client'" (click)="retryFailedRequest()">{{errorMsg}}. Try freshing this page.</span>
+  </div>
+</ng-template>

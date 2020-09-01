@@ -1,0 +1,33 @@
+.navbar-container { height: 50px;
+  .closeBtn { position: absolute; right: 20px; height: 40px; display: flex; font-size: 12px; text-transform: uppercase; align-items: center; cursor: pointer;
+    &:hover { font-weight: bold; }
+  }
+  .navbar-wrapper { width: 100%; list-style-type: none; border: none; overflow: hidden; background-color: #333; height: 50px; display: flex;
+    padding: 5px 10px;
+    .menu-btn-wrapper { display: flex; align-items: center;
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+      i { cursor: pointer; color: white; }
+    }
+    .logo-wrapper { position: relative; display: flex; cursor: pointer; width: 200px; margin-left: 15px;
+      svg { position: absolute; top: 11px; }
+      span { position: absolute; left: 85px; font-size: 24px; color: white; font-weight: bold; top: 2px; }
+    }
+    .links-wrapper { display: flex; align-items: center; padding-top: 5px;
+      li { float: left; cursor: pointer; padding: 10px 5px;
+        &:hover, &.active { 
+          .underline { width: 100%; background: white;}
+        }
+        span { display: block; font-size: 11px; color: white; text-align: center; text-decoration: none; }
+        .underline { width: 0; height: 1px; background: black; transition: .2s all; }
+        
+      }
+    }
+    .category { color: white; text-transform: uppercase; font-size: 11px; display: flex; flex: 1; justify-content: flex-end; align-items: center;
+      cursor: pointer;
+      span { padding-top: 5px; font-weight: bold; text-align: end; }
+    }
+    .close-btn { color: white; }
+  }
+}

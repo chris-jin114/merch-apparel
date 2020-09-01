@@ -1,0 +1,167 @@
+<div class="filter-nav">
+  <div class="filter-header">
+    <div class="filterWrapper">
+      <div class="margin-right-10" (click)="flip()" id="filter-box">
+        <div class="box">
+          <span>FILTER / SORT BY</span><i id="flip" class="fal fa-chevron-down black" [ngClass]="{rotate: isOpenedNav}"></i>
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+      <div class="ion-margin-end pageInfo" *ngIf="pagination?.meta?.total">
+        {{pagination?.meta?.from }} - {{pagination?.meta?.to}} of {{pagination?.meta?.total}}
+      </div>
+      <button class="iconBtn btnPrev" (click)="prev()" [ngClass]="{'disabled': pagination?.links?.prev == null}">
+        <i class="fas fa-angle-left"></i>
+      </button>
+      <button class="iconBtn btnNext" (click)="next()" [ngClass]="{'disabled': pagination?.links?.next == null}">
+        <i class="fas fa-angle-right"></i>
+      </button>
+    </div>
+  </div>
+  <div id="filter-content">
+    <div id="content" [ngClass]="{expand: isOpenedNav}">
+      <ion-row class="content-wrap pd0" id="filterPane">
+        <ion-col class="pd0" sizeXl="4" sizeLg="4" sizeMd="3" sizeSm="12" sizeXs="12">
+          <ion-row class="attribute-wrapper">
+            <div class="title-wrapper margin-top-5" (click)="changeStatus('color')">
+              <span>COLOR</span>
+              <div class="accordion-nav-actions">
+                <i class="fa fa-plus ion-hide-sm-gt" aria-hidden="true" *ngIf="!isOpenedColor"></i>
+                <i class="fa fa-minus ion-hide-sm-gt" aria-hidden="true" *ngIf="isOpenedColor"></i>
+              </div>
+            </div>
+            <div class="accordion-content" [ngClass]="{expand: !isOpenedColor}">
+              <ul class="color-list">
+                <li *ngFor="let color of filter?.color; let i = index">
+                  <div class="accordion-item">
+                    <accordion-item [item]="color" [type]="'color'"></accordion-item>
+                  </div>
+                </li>
+              </ul>
+              <!-- <ion-row class="pd0">
+                <ion-col class="pd0" sizeXl="4" sizeLg="4" sizeMd="6" sizeSm="4" sizeXs="4" *ngFor="let color of filter?.color; let i = index">
+                  <div class="accordion-item">
+                    <accordion-item [item]="color" [type]="'color'"></accordion-item>
+                  </div>
+                </ion-col>
+              </ion-row> -->
+            </div>
+          </ion-row>
+        </ion-col>
+        <ion-col class="pd0" size="12" sizeMd="4" sizeLg="4">
+          <ion-row class="attribute-wrapper pd0">
+            <div class="title-wrapper margin-top-5" (click)="changeStatus('style')">
+              <span>STYLE</span>
+              <div class="accordion-nav-actions">
+                <i class="fa fa-plus ion-hide-sm-gt" aria-hidden="true" *ngIf="!isOpenedStyle"></i>
+                <i class="fa fa-minus ion-hide-sm-gt" aria-hidden="true" *ngIf="isOpenedStyle"></i>
+              </div>
+            </div>
+            <div class="accordion-content" [ngClass]="{expand: !isOpenedStyle}">
+              <ul class="style-list">
+                <li *ngFor="let style of filter?.style;">
+                  <div class="accordion-item">
+                    <accordion-item [item]="style" [type]="'style'"></accordion-item>
+                  </div>
+                </li>
+              </ul>
+<!--               
+              <ion-row class="pd0">
+                <ion-col class="pd0" sizeSm="4" sizeXs="6" sizeMd="6" *ngFor="let style of filter?.style;">
+                  <div class="accordion-item">
+                    <accordion-item [item]="style" [type]="'style'"></accordion-item>
+                  </div>                  
+                </ion-col>
+              </ion-row> -->
+            </div>
+          </ion-row>
+        </ion-col>
+        <ion-col class="pd0" size="12" sizeMd="2">
+          <ion-row class="attribute-wrapper pd0">
+            <div class="title-wrapper margin-top-5" (click)="changeStatus('size')">
+              <span>SIZE</span>
+              <div class="accordion-nav-actions">
+                <i class="fa fa-plus ion-hide-sm-gt" aria-hidden="true" *ngIf="!isOpenedSize"></i>
+                <i class="fa fa-minus ion-hide-sm-gt" aria-hidden="true" *ngIf="isOpenedSize"></i>
+              </div>
+            </div>
+            <ion-grid class="accordion-content pd0" [ngClass]="{expand: !isOpenedSize}">
+              <ul class="size-list">
+                <li *ngFor="let size of filter?.size;">
+                  <div class="accordion-item">
+                    <accordion-item [item]="size" [type]="'size'"></accordion-item>
+                  </div>
+                </li>
+              </ul>
+              <!-- <ion-row class="pd0">
+                <ion-col class="pd0" size="4" sizeMd="6" *ngFor="let size of filter?.size;">
+                  <div class="accordion-item">
+                    <accordion-item [item]="size" [type]="'size'"></accordion-item>
+                  </div>                  
+                </ion-col>
+              </ion-row> -->
+            </ion-grid>
+          </ion-row>
+        </ion-col>
+        <ion-col class="pd0" size="12" sizeMd="1.5" sizeLg="1" >
+          <ion-row class="attribute-wrapper pd0">
+            <div class="title-wrapper margin-top-5" (click)="changeStatus('weight')">
+              <span>WEIGHT</span>
+              <div class="accordion-nav-actions">
+                <i class="fa fa-plus ion-hide-sm-gt" aria-hidden="true" *ngIf="!isOpenedWeight"></i>
+                <i class="fa fa-minus ion-hide-sm-gt" aria-hidden="true" *ngIf="isOpenedWeight"></i>
+              </div>
+            </div>
+            <ion-grid class="accordion-content pd0" [ngClass]="{expand: !isOpenedWeight}">
+              <ion-row class="pd0">
+                <ion-col class="pd0" size="4" sizeMd="12" *ngFor="let weight of filter?.weight;">
+                  <div class="accordion-item">
+                  <accordion-item [item]="weight" [type]="'weight'"></accordion-item>
+                </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-row>
+        </ion-col>
+        <ion-col class="pd0" size="12" sizeMd="1.5" sizeLg="1">
+          <ion-row class="attribute-wrapper pd0">
+            <div class="title-wrapper margin-top-5" (click)="changeStatus('sortby')">
+              <span>SORT BY</span>
+              <div class="accordion-nav-actions">
+                <i class="fa fa-plus ion-hide-sm-gt" aria-hidden="true" *ngIf="!isOpenedSortby"></i>
+                <i class="fa fa-minus ion-hide-sm-gt" aria-hidden="true" *ngIf="isOpenedSortby"></i>
+              </div>
+            </div>
+            <ion-grid class="accordion-content pd0" [ngClass]="{expand: !isOpenedSortby}">
+              <ion-row class="pd0">
+                <ion-col class="pd0" size="4" sizeMd="12">
+                  <div class="accordion-item sort-item" (click)="setSortField('popularity')" [ngClass]="{'active': sortField == 'popularity'}">
+                    <span class="sort-type">Popularity</span>
+                    <i id="arrow-down" [ngClass]="{rotate: !sortDir}" class="far fa-arrow-up"></i>
+                  </div>
+                </ion-col>
+                <ion-col class="pd0" size="4" sizeMd="12">
+                  <div class="accordion-item sort-item" (click)="setSortField('title')" [ngClass]="{'active': sortField == 'title'}">
+                    <span class="sort-type">Name</span>
+                    <i id="arrow-down" [ngClass]="{rotate: !sortDir}" class="far fa-arrow-up"></i>
+                  </div>
+                </ion-col>
+                <ion-col class="pd0" size="4" sizeMd="12">
+                  <div class="accordion-item sort-item" (click)="setSortField('price')" [ngClass]="{'active': sortField == 'price'}">
+                    <span class="sort-type">Price</span>
+                    <i id="arrow-down" [ngClass]="{rotate: !sortDir}" class="far fa-arrow-up"></i>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <ion-row class="reset-wrapper pd0 margin-top-30">
+        <span *ngIf="isFilterApplied" (click)="clearAll()">RESET/CLEAR</span>
+        <span *ngIf="!isFilterApplied">No Filters Applied</span>
+      </ion-row>
+    </div>
+  </div>
+</div>

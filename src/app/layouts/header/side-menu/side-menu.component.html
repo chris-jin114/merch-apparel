@@ -1,0 +1,16 @@
+<div id="closeMenu">
+  <div class="close-header">
+    <div class="close-btn" (click)="closeSidemenu()">
+      <i class="fas fa-times"></i><span>CLOSE</span>
+    </div>
+    
+  </div>
+</div>
+<div id="mySidebar" class="sidebar">
+  <a (click)="navigate('men')" class="menu-link">MEN</a>
+  <a (click)="navigate('women')" class="menu-link">WOMEN</a>
+  <a (click)="navigate('kids')" class="menu-link">KIDS</a>
+  <a (click)="navigate('accessories')" class="menu-link">ACCESSORIES</a>
+</div>
+
+<div (click)="closeSidemenu()" id="sidebar-overlay"></div>

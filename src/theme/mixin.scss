@@ -1,0 +1,87 @@
+/*
+Variables
+*/
+$blue: #3190e8;
+$red: #d92626;
+$green: #00ff80;
+$yellow: #ffff00;
+$white: #ffffff;
+$bc: #e4e4e4;
+$fc: #fff;
+$filterGray: #a7a9ab;
+$filterBlack: #414042;
+
+/*
+Variables for Break points.
+*/
+$ionXs: 0px;
+$ionSm: 576px;
+$ionMd: 768px;
+$ionLg: 992px;
+$ionXl: 1200px;
+
+@mixin bis($url) {
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+@mixin borderRadius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin allcover {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@mixin background($color) {
+    background: $color;
+}
+
+@mixin transition($property: all, $duration: .2s, $type: linear) {
+    -moz-transition: $property $duration $type;
+    -webkit-transition: $property $duration $type;
+    transition: $property $duration $type;
+}
+
+@mixin rotate($degree) {
+    -moz-transform: rotate($degree); 
+    -webkit-transform: rotate($degree); 
+    transform: rotate($degree);
+    transform-origin: center center;
+}
+
+@mixin hide($minWidth, $maxWidth) {
+    @if $maxWidth == "null" {
+        @media (min-width: #{$minWidth}px) {
+            display: none !important;
+        }
+    } @if($minWidth == "null") {
+        @media screen and (max-width: #{$maxWidth}px) {
+            display: none !important;
+        }
+    } @else {
+        @media (min-width: #{$minWidth}px) and (max-width: #{$maxWidth}px) {
+            display: none !important;
+        }
+    }
+}
+
+@mixin spanBottomLine() {
+    cursor: pointer; color: gray; text-transform: uppercase; position: relative;
+    &::after { content: ''; display: block; width: 0; height: 2px; background: gray; transition: width 0.3s; position: absolute; bottom: -2px; }
+    &:hover::after { width: 100%; }
+    
+}
+
+@mixin fontSizeLtWidth($fs: 12px, $minWidth: 767px) {
+    @media screen and(max-width: $minWidth) {
+        font-size: $fs;
+    }
+}

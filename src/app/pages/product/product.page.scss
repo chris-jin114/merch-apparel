@@ -1,0 +1,85 @@
+.page-wrapper {
+    .content-wrapper { max-width: 1375px;
+        .desktop {
+            @media (max-width: 767px) { display: none; }
+            .productImage { display: flex; align-items: center; flex-direction: column; justify-content: center; padding: 20px;
+                .image-zoom { width: 100%; height: 550px; 
+                    image-zoom { width: 100%; height: 100%; }
+                }
+                .sides { cursor: pointer;
+                    img { width: 50px; margin: 5px; border: solid 1px transparent;
+                        &:hover { border-color: black; }
+                        &.active { border-color: black; }
+                    }
+                }
+                .styles { display: flex; margin: auto; width: 100%;
+                    ion-row { margin: auto; width: 50%; padding-top: 15px; 
+                        .thumbnail { padding: 5px; cursor: pointer; align-items: center; display: flex; flex-direction: column;//width: 70px;
+                            &:hover { transform: scale(1.1); transition: .3s ease; }
+                            &.selected { background: #f1f4f5; 
+                                img { mix-blend-mode: multiply; }
+                            }
+                            img { width: 50px; }
+                        }
+                    }
+                }
+            }
+            .productDetail { padding: 50px; color: gray; font-size: 0.9rem;
+                .back-link {
+                    .link-wrapper { color: gray; font-size: 14px; cursor: pointer; font-weight: bold; width: fit-content; text-transform: uppercase;
+                        font-weight: bold;
+                        &:hover { text-shadow: 1px 1px 3px gray; }
+                        i { margin-right: 10px;}
+                    }
+                }
+                span { font-family: AGBookPro_Bold,arial,sans-serif; padding: 10px 0; }
+                .section { display: flex; flex-direction: column; margin-top: 40px;
+                    .productName { font-weight: bold; font-size: 1.3rem; color: black; text-shadow: 1px 1px 3px #AAAAAA; }
+                    .size { display: flex;
+                        .sizeItem { border: solid 1px lightgray; color: black; width: 50px; display: flex; justify-content: center; 
+                            padding: 5px 8px; margin-right: 15px; font-size: 13px;
+                            // &:hover {  background: black; color: white; }
+                        }
+                    }
+                    .colors { display: flex; flex-wrap: wrap; padding: 10px 0;
+                        .color { margin: 5px 10px 5px 0; width: 34px; height: 34px; }
+                    }
+                    .price { color: gray; font-size: 0.9rem; }
+                }
+                .title { font-size: 0.9rem; color: black; text-transform: uppercase;
+                }
+            }
+        }
+        .mobile { padding: 30px 20px;
+            @media (min-width: 768px) { display: none; }
+            .productImage { display: flex; flex-direction: column; justify-content: center; align-items: center;
+                .image { width: 100%; height: 300px;
+                }
+                .sides {
+                    img { width: 50px; margin: 5px; cursor: pointer; border: solid 1px transparent;
+                        &:hover { border-color: black; }
+                        &.active { border-color: black; }
+                    }
+                }
+            }
+            span { font-family: AGBookPro_Bold,arial,sans-serif; padding: 10px 0; }
+            .section { display: flex; flex-direction: column; 
+                .productName { font-weight: bold; font-size: 1.1rem; color: black; text-shadow: 1px 1px 3px #AAAAAA;  }
+                .size { display: flex;
+                    .sizeItem { border: solid 1px lightgray; width: 50px; display: flex; justify-content: center; padding: 5px; margin: 5px;
+                        color: black; font-size: 13px;
+                    }
+                }
+                .colors { display: flex; flex-wrap: wrap; padding: 10px 0;
+                    .color { margin: 5px 10px 5px 0; width: 34px; height: 34px; }
+                }
+                .price { color: gray; font-size: 0.9rem; }
+            }
+            .title { font-size: 0.9rem; color: black; text-transform: uppercase; }
+        }
+        .divider { height: 1px; background: lightgray; margin-left: 35px; margin-right: 35px; }
+        .related-products-heading { 
+            span { color: #333333; font-weight: bold; }
+        }
+    }
+}

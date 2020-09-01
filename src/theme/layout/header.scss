@@ -1,0 +1,70 @@
+header {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0px 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+  border: none;
+}
+
+li {
+  max-height: inherit;
+  list-style: none;
+  margin: 0 5px;
+  font-size: 11px;
+  color: gray;
+  float: left;
+  padding: 0;
+}
+.header-text {
+  width: 380px;
+  float: right;
+}
+
+/*style for the second level menu*/
+.submenu {
+  z-index: 999999;
+  height: 0;
+  display: grid;
+  padding: 0;
+  overflow: hidden;
+  list-style-type: none;
+  background: #ededed;
+  transition: height 0.5s ease-out;
+  position: absolute;
+  right: 0;
+}
+
+.submenu li a {
+  display: block;
+  padding: 5px;
+  color: gray;
+  text-decoration: none;
+  transition: background 0.3s;
+  white-space: nowrap;
+  text-transform: initial;
+}
+
+.submenu li a.active {
+  color: #000;
+}
+
+.submenu li a:hover {
+  // background: rgba(0, 0, 0, 0.3);
+  color: #000;
+}
+
+.sub-link {
+  width: 100%;
+  color: gray;
+}

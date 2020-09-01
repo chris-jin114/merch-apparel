@@ -1,0 +1,8 @@
+.my-navbar {
+  @media screen and (max-width: 499px) {
+    height: 50px;
+    background-color: #fff;
+  }
+  z-index: 1000;
+}
+.main-content { margin-top: 50px; }

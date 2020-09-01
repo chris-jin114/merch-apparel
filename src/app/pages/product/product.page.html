@@ -1,0 +1,125 @@
+<div class="page-wrapper">
+  <div class="page-container" *ngIf="product else loading">
+    <div class="content-wrapper">
+      <ion-row class="desktop">
+        <ion-col size="6" class="productDetail">
+          <div class="back-link">
+            <div class="link-wrapper" (click)="backToList()">
+              <i class="fas fa-arrow-left"></i><span>Back to {{category.category_name}}</span>
+            </div>
+          </div>
+          <div class="section">
+            <span class="title productName">{{product.product_name}}</span>
+            <span>{{product.product_description}}</span>
+          </div>
+          <div class="section">
+            <p class="title"><b>Colors</b><span class="uppercase margin-left-15 gray">{{previewStyle.color_name}}</span></p>
+            <div class="colors">
+              <color-cube *ngFor="let style of product?.product_style;" class="color" (click)="selectStyle(style)"
+              (mouseover)="onMouseOver(style)" (mouseout)="onMouseOut()" tooltip="{{style.color_name}}"
+              [active]="defaultStyle.row_uuid == style.row_uuid" [colors]="style.color_hash"></color-cube>
+            </div>
+          </div>
+          <div class="section">
+            <span class="title"><b>Prices</b></span>
+            <ion-row *ngFor="let price of product?.prices;" class="price">
+              <ion-col size="3" class="black">{{price.product_price | currency: 'USD':'symbol-narrow':'.2' }}</ion-col>
+              <ion-col size="9">{{price.range_min}}{{price.range_max > 1000 ? '+' : '-'+price.range_max}} items</ion-col>
+            </ion-row>
+          </div>
+          <div class="section">
+            <span class="title"><b>Sizes</b></span>
+            <div class="size">
+              <div *ngFor="let size of product?.product_sizes" class="sizeItem uppercase">
+                {{size}}
+              </div>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col size="6" class="productImage">
+          <div class="image-zoom">
+            <image-zoom [src] = "previewStyle?.original_images[sideIndex]?.full_url"></image-zoom>
+          </div>
+          <div class="sides">
+            <img [src]="previewStyle?.small_images[0]?.full_url" [ngClass]="{'active': !sideIndex}" (click)="onClickSide(0)"
+              (mouseover)="onSideOver(0)">
+            <img [src]="previewStyle?.small_images[1]?.full_url" *ngIf="previewStyle?.flag_has_back"
+              [ngClass]="{'active': sideIndex}" (click)="onClickSide(1)" (mouseover)="onSideOver(1)">
+          </div>
+          <div class="styles" *ngIf="product.product_style.length > 1">
+            <ion-row class="ion-no-padding styles-wrapper">
+              <ion-col size="{{product.product_style.length <= 4 ? 12 / product.product_style.length : 3}}"
+                *ngFor="let style of product.product_style; let index = index;" class="thumbnail"
+                (mouseover)="onMouseOver(style)" (mouseout)="onMouseOut()" (click)="selectStyle(style)"
+                [ngClass]="{'selected': style.row_uuid == defaultStyle.row_uuid}">
+                <img [src]="style.thumbnail">
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+      <div class="mobile">
+        <div class="section">
+          <span class="title productName">{{product.product_name}}</span>
+          <span>{{product.product_description}}</span>
+        </div>
+        <div class="productImage">
+          <div class="image">
+            <!-- <img [src]="previewStyle.original_images[sideIndex].full_url" (load)="imageLoaded()"/>
+            <div class="image-loader" *ngIf="imageLoading">
+              <ion-spinner name="lines"></ion-spinner>
+            </div> -->
+            <image-zoom [src] = "previewStyle?.original_images[sideIndex]?.full_url"></image-zoom>
+          </div>
+          <div class="sides">
+            <img [src]="previewStyle.small_images[0].full_url" [ngClass]="{'active': !sideIndex}" (mouseover)="onSideOver(0)"
+              (click)="onClickSide(0)">
+            <img [src]="previewStyle.small_images[1].full_url" *ngIf="previewStyle.flag_has_back" (mouseover)="onSideOver(1)"
+              [ngClass]="{'active': sideIndex}" (click)="onClickSide(1)">
+          </div>
+        </div>
+        <div class="section">
+          <p class="title padding-top-10 padding-bottom-10"><b>Colors</b><span class="uppercase margin-left-15 gray">{{previewStyle.color_name}}</span></p>
+          <div class="colors">
+            <color-cube *ngFor="let style of product?.product_style;" class="color" (click)="selectStyle(style)"
+              (mouseover)="onMouseOver(style)" (mouseout)="onMouseOut()" tooltip="{{style.color_name}}"
+              [active]="defaultStyle.row_uuid == style.row_uuid" [colors]="style.color_hash"></color-cube>
+          </div>
+        </div>
+        <div class="section">
+          <span class="title"><b>Prices</b></span>
+          <ion-row *ngFor="let price of product.prices;" class="price">
+            <ion-col size="3" class="black">{{price.product_price | currency: 'USD':'symbol-narrow':'.2' }}</ion-col>
+            <ion-col size="9">{{price.range_min}}{{price.range_max > 1000 ? '+' : '-'+price.range_max}} items</ion-col>
+          </ion-row>
+        </div>
+        <div class="section">
+          <span class="title"><b>Sizes</b></span>
+          <div class="size">
+            <div *ngFor="let size of product.product_sizes" class="sizeItem uppercase">
+              {{size}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="divider margin-top-50 margin-bottom-20"></div>
+      <div class="related-products-heading padding-35">
+        <span>RELATED PRODUCTS</span>
+      </div>
+      <ion-row>
+        <ion-col *ngFor="let product of product.related_products.slice(0, 4)" sizeXs="12" sizeSm="6" sizeMd="6" sizeLg="3" sizeXl="3" class="product">
+          <product-card [product]="product" [categoryName]="category.category_name"></product-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="asyncLoading">
+    <ion-spinner name="lines" *ngIf="!errorType"></ion-spinner>
+    <span class="margin-left-10" *ngIf="!errorType">Loading...</span>
+    <span class="retry" *ngIf="errorType == 'server'" (click)="retryFailedRequest()">Unable to connect. Try freshing this page.</span>
+    <span class="retry" *ngIf="errorType == 'client'" (click)="retryFailedRequest()">{{errorMsg}}. Try freshing this page.</span>
+  </div>
+</ng-template>

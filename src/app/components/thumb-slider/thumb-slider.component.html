@@ -1,0 +1,14 @@
+<div class="colors-wheel" >
+  <ion-slides pager="false" [options]="slideOpts" #slider (ionSlideWillChange)="onSlideChange()" (ionSlideTouchEnd)="onSlideChange()">
+    <ion-slide *ngFor="let style of product.product_style" class="variants" [ngStyle]="{'background': color}">
+      <img [src]="style.thumbnail" class="front-img" (mouseover)="switchStyle(product, style)" (mouseout)="onMouseOut()"/>
+    </ion-slide>
+  </ion-slides>
+  <div class="left-arrow" (click)="prevSlide()" [ngClass]="{'disable': isBeginning}" *ngIf="arrow == true">
+    <i class="fal fa-angle-left"></i>
+  </div>
+  <div class="right-arrow" (click)="nextSlide()" [ngClass]="{'disable': isEnd}" *ngIf="arrow == true">
+    <i class="fal fa-angle-right"></i>
+  </div>
+</div>
+

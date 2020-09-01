@@ -1,0 +1,20 @@
+.image { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    background: linear-gradient(180deg, #dcdcda, #f1f4f5 50%, #dcdcda); position: relative;
+    .wrapper { position: relative; display: flex; align-items: center; width: 100%; height: 100%; justify-content: center; overflow: auto;
+        img { max-width: unset; position: absolute; object-fit: contain; mix-blend-mode: multiply; cursor: pointer; }
+    }
+    .image-loader { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; background: #ffffffd0;
+        ion-spinner { margin: auto; }
+    }
+    .zoom-slider { height: 50%; position: absolute; left: 20px; padding: 10px 0; box-shadow: 1px 1px 10px #f1f4f5a0; background: #ffffffa0;
+        border-radius: 20px;
+        @media screen and (max-width: 767px){ height: 70%; }
+        ::ng-deep mat-slider { height: 100%; padding: 0; width: 30px;
+            .mat-slider-wrapper { left: 14px;
+                .mat-slider-track-fill { background: #2e9889; }
+                .mat-slider-track-background { background: #2e988950; }
+                .mat-slider-thumb { background: #2e9889; border: none; }
+            }
+        }
+    }
+}

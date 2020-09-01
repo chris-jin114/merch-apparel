@@ -1,0 +1,140 @@
+ul {
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0px 5px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+  border: none;
+}
+
+li {
+  max-height: inherit;
+  list-style: none;
+  margin: 0 5px;
+  font-size: 11px;
+  color: gray;
+  float: left;
+  padding: 0;
+}
+
+ul {
+  li {
+    margin: 0 15px;
+    font-size: 13px;
+    cursor: pointer;
+    color: gray;
+    text-transform: uppercase;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.subscribe-dir {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.gender-row {
+  // input {
+  //   display: none;
+  // }
+}
+
+.input-box {
+  width: 275px;
+  display: inline-flex;
+  margin: 0 auto;
+
+  .input-text {
+    background: #f2f2f2;
+    color: #777;
+    font-size: 10px;
+    width: 100%;
+    max-width: 130px;
+    height: 20px;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+  }
+
+  .genders {
+    position: relative;
+    width: 100px;
+    margin: 0 auto;
+    display: inline-flex;
+
+    label {
+      padding-left: 35px;
+      display: inline-block;
+      padding: -5px 10px;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+    }
+
+    label span {
+      position: relative;
+      width: 100%;
+    }
+
+    label span:before,
+    label span:after {
+      content: '';
+    }
+
+    .col-1 {
+      left: 7px;
+    }
+
+    label span:before {
+      border: 1px solid #222021;
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: top;
+      left: -23px;
+      position: absolute;
+      top: 0px;
+    }
+
+    label span:after {
+      background: #222021;
+      width: 12px;
+      height: 12px;
+      position: absolute;
+      top: 4px;
+      left: -19px;
+      -webkit-transition: 300ms;
+      transition: 300ms;
+      opacity: 0;
+    }
+
+    label input:checked + span:after {
+      opacity: 1;
+    }
+
+    .radio-btn {
+      display: none;
+    }
+  }
+
+  button {
+    background: gray;
+    color: white;
+    font-size: 10px;
+  }
+}
+
+.mini-icons {
+  width: 20px;
+  color: #777;
+}

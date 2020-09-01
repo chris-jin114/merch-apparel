@@ -1,0 +1,95 @@
+@import "../theme/mixin.scss";
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+  margin: 0; padding: 0; border: 0; font-size: 100%; vertical-align: baseline; 
+}
+.float-left { float: left; }
+
+.float-right { float: right; }
+
+.border-top { border-top: 1px solid #ccc; }
+.border-bottom { border-bottom: 1px solid #ccc; }
+.border-left { border-left: 1px solid #ccc; }
+.border-right { border-right: 1px solid #ccc; }
+
+@media screen and (min-width: 768px) {
+  .md-border-bottom { border-bottom: 1px solid #ccc; }
+}
+
+@media screen and (max-width: 767px) {
+  .sm-border-bottom { border-bottom: 1px solid #ccc; }
+}
+
+* { font-family: AGBookPro_Bold,arial,sans-serif; font-weight: 500; }
+
+.container {
+  @media screen and (min-width: 1024px) {
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+}
+
+.page-wrapper { height: 100%; background: #fff; overflow: auto;
+  .page-container { 
+    .content-wrapper { position: relative; width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 40px; }
+  }
+}
+
+.header-wrapper { background: #fff; z-index: 999;
+  .header-container {
+    .content-wrapper { width: 100%; max-width: 1600px; margin-top: 15px; margin-left: auto; margin-right: auto; }
+  }
+}
+
+.alert { height: 35px; font-size: 13px; color: red; text-transform: initial; }
+
+.style-active { border-bottom: 1px solid black; }
+
+.asyncLoading { font-size: 1rem; color: #333333; padding: 20px; display: flex; align-items: center;  height: fit-content;
+  .retry { margin-left: 10px; cursor: pointer;
+    &:hover { color: red;}
+  }
+}
+
+* {
+  &::-webkit-scrollbar-track { background: #f7f9fc; }
+  &::-webkit-scrollbar-thumb { background: #e4e9f2; }
+  &::-webkit-scrollbar { width: 8px; background: #f7f9fc; height: 8px; }
+}
+/*
+ion-col break-point
+*/
+.ion-hide-xs { @include hide(0, 576); }
+.ion-hide-sm { @include hide(576, 768); }
+.ion-hide-md { @include hide(768, 992); }
+.ion-hide-lg { @include hide(992, 1200); }
+.ion-hide-xl { @include hide(1200, "null"); }
+
+.ion-hide-xs-gt { @include hide(576, "null"); }
+.ion-hide-sm-gt { @include hide(768, "null"); }
+.ion-hide-md-gt { @include hide(992, "null"); }
+.ion-hide-xl-gt { @include hide(1200, "null"); }
+
+.hide-xs { @include hide(0, 299); }
+.hide-vs { @include hide(300, 499); }
+.hide-sm { @include hide(500, 767); }
+.hide-md { @include hide(768, 999); }
+.hide-lg { @include hide(1000, 1299); }
+.hide-vl { @include hide(1300, 1599); }
+.hide-xl { @include hide(1600, "null"); }
+
+.hide-xs-gt { @include hide(299, "null"); }
+.hide-vs-gt { @include hide(499, "null"); }
+.hide-sm-gt { @include hide(767, "null"); }
+.hide-md-gt { @include hide(999, "null"); }
+.hide-lg-gt { @include hide(1299, "null"); }
+.hide-vl-gt { @include hide(1599, "null"); }
+
+.hide-vs-lt { @include hide("null", 300); }
+.hide-sm-lt { @include hide("null", 500); }
+.hide-md-lt { @include hide("null", 768); }
+.hide-lg-lt { @include hide("null", 1000); }
+.hide-vl-lt { @include hide("null", 1300); }
+.hide-xl-lt { @include hide("null", 1600); }
+
+.pd0 { padding: 0px; }
